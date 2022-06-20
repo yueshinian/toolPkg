@@ -1,0 +1,15 @@
+<launch>
+
+   <arg name="octomap_param_file" default="$(find octomapManger)/config/octomap.yaml" />
+
+  <rosparam command="load" file="$(arg octomap_param_file)" />
+
+   <include file="$(find sensor_scan_generation)/launch/sensor_scan_generation.launch" />
+
+  <include file="$(find loam_interface)/launch/loam_interface.launch" />
+  
+  <!--node name="pointFrameTrans" pkg="octomapManger" type="pointFrameTrans" output="screen" /-->
+
+  <node name="generateOctomap" pkg="octomapManger" type="generateOctomap" output="screen" />
+
+</launch>
